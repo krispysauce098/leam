@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SaveResource" load_steps=2 format=3 uid="uid://bf7dmfksv0jmj"]
+
+[ext_resource type="Script" path="res://scripts/resources/save.gd" id="1_65d3a"]
+
+[resource]
+script = ExtResource("1_65d3a")
+best_score = 0
+last_score = 0

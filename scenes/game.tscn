@@ -1,0 +1,157 @@
+[gd_scene load_steps=16 format=3 uid="uid://bus7uxnallepi"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2362y"]
+[ext_resource type="PackedScene" uid="uid://ci4crteo4oo8f" path="res://scenes/fox_43.tscn" id="2_lhrow"]
+[ext_resource type="PackedScene" uid="uid://cak16c1nl07jn" path="res://scenes/player.tscn" id="3_855v3"]
+[ext_resource type="Script" path="res://scripts/f43mt.gd" id="4_s1edv"]
+[ext_resource type="PackedScene" uid="uid://cgdxocgnnbf1v" path="res://scenes/hud.tscn" id="5_eiod0"]
+[ext_resource type="PackedScene" uid="uid://blfgm1mr560o6" path="res://scenes/hud2.tscn" id="6_d4mlq"]
+[ext_resource type="AudioStream" uid="uid://cnv10fsuxl3kq" path="res://sounds/playercrushed.wav" id="6_hijle"]
+[ext_resource type="PackedScene" uid="uid://61xv3x7of50a" path="res://scenes/asteroid.tscn" id="7_jyr4k"]
+[ext_resource type="AudioStream" uid="uid://qdlymguaulqu" path="res://sounds/blasted.wav" id="7_xud54"]
+[ext_resource type="Shader" uid="uid://chnp7vff54xnu" path="res://shaders/rocketparticle.tres" id="9_aiq70"]
+[ext_resource type="PackedScene" uid="uid://b03vymllo0eva" path="res://scenes/pausemenu.tscn" id="10_vvo28"]
+
+[sub_resource type="Curve2D" id="Curve2D_t8p54"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgiaq"]
+shader = ExtResource("9_aiq70")
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_boire"]
+
+[sub_resource type="Gradient" id="Gradient_wcpsu"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_2362y")
+asteroid_scene = ExtResource("7_jyr4k")
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t8p54")
+
+[node name="AsteroidSpawnPoint" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2(576, 0)
+rotation = 3.14159
+progress = 576.0
+
+[node name="Fox43MovePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t8p54")
+
+[node name="Fox43Point" type="PathFollow2D" parent="Fox43MovePath"]
+position = Vector2(576, 0)
+rotation = 3.14159
+progress = 576.0
+
+[node name="RPEmitter" type="GPUParticles2D" parent="."]
+position = Vector2(432, -95)
+amount = 350
+process_material = SubResource("ShaderMaterial_mgiaq")
+lifetime = 25.0
+speed_scale = 64.0
+
+[node name="Debris" type="CPUParticles2D" parent="."]
+position = Vector2(305, 279)
+emitting = false
+amount = 50
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 435)
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[node name="Fox43" parent="." instance=ExtResource("2_lhrow")]
+
+[node name="Blast" type="AudioStreamPlayer" parent="Fox43"]
+stream = SubResource("AudioStreamGenerator_boire")
+
+[node name="Player" parent="." instance=ExtResource("3_855v3")]
+position = Vector2(576, 547)
+speed = 350
+
+[node name="Crushed" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("6_hijle")
+
+[node name="Blasted" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("7_xud54")
+
+[node name="BlastedDebris" type="CPUParticles2D" parent="."]
+position = Vector2(958, -178)
+emitting = false
+amount = 100
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 26.0
+gravity = Vector2(0, 900)
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(0, 0, 0, 1)
+color_ramp = SubResource("Gradient_wcpsu")
+
+[node name="Startpos" type="Marker2D" parent="."]
+position = Vector2(576, 547)
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.75
+
+[node name="Fox43AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+script = ExtResource("4_s1edv")
+
+[node name="Fox43ReadyTimer" type="Timer" parent="Fox43AttackTimer"]
+
+[node name="Fox43LaserTimer" type="Timer" parent="Fox43AttackTimer"]
+
+[node name="Fox43MoveTimer" type="Timer" parent="Fox43AttackTimer"]
+wait_time = 0.1
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="UI" instance=ExtResource("5_eiod0")]
+
+[node name="HUD" parent="UI" instance=ExtResource("6_d4mlq")]
+visible = false
+
+[node name="PauseMenu" parent="UI/HUD" instance=ExtResource("10_vvo28")]
+visible = false
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+position = Vector2(576, 0)
+lifetime = 10.0
+preprocess = 48.65
+emission_shape = 3
+emission_rect_extents = Vector2(600, 1)
+spread = 0.0
+gravity = Vector2(0, 20)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+
+[connection signal="area_entered" from="Fox43" to="." method="_on_fox_43_area_entered"]
+[connection signal="body_entered" from="Fox43" to="." method="_on_fox_43_body_entered"]
+[connection signal="body_entered" from="Player" to="." method="_on_player_body_entered"]
+[connection signal="player_move" from="Player" to="." method="_on_player_move"]
+[connection signal="player_stop_move" from="Player" to="." method="_on_player_stop_move"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Fox43AttackTimer" to="." method="_on_fox_43_attack_timer_timeout"]
+[connection signal="timeout" from="Fox43AttackTimer/Fox43ReadyTimer" to="." method="_on_fox_43_ready_timer_timeout"]
+[connection signal="timeout" from="Fox43AttackTimer/Fox43LaserTimer" to="." method="_on_fox_43_laser_tmer_timeout"]
+[connection signal="timeout" from="Fox43AttackTimer/Fox43MoveTimer" to="." method="_on_fox_43_move_timer_timeout"]
+[connection signal="quit_press" from="UI/MainMenu" to="." method="_on_main_menu_quit_press"]
+[connection signal="menu_press" from="UI/HUD/PauseMenu" to="." method="_on_menu_press"]
+[connection signal="quit_press" from="UI/HUD/PauseMenu" to="." method="_on_pause_menu_quit_press"]
+[connection signal="resume_press" from="UI/HUD/PauseMenu" to="UI/HUD" method="_on_pause_menu_resume_press"]

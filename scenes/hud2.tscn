@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://blfgm1mr560o6"]
+
+[ext_resource type="Script" path="res://scripts/hud2.gd" id="1_0bcrq"]
+
+[sub_resource type="SystemFont" id="SystemFont_1wnx1"]
+font_names = PackedStringArray("Sans-Serif")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57p6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkovu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4h63"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gq00k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2sogc"]
+
+[node name="blablabla whatever" type="CanvasLayer"]
+script = ExtResource("1_0bcrq")
+
+[node name="Distance" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -317.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "The Wind and the Flowers are as Gay as ?"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="pause" type="Button" parent="."]
+offset_left = -19.0
+offset_top = 40.0
+offset_right = -1.0
+offset_bottom = 71.0
+rotation = -1.5713
+scale = Vector2(2.35024, 2.63227)
+theme_override_fonts/font = SubResource("SystemFont_1wnx1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_57p6u")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kkovu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k4h63")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gq00k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2sogc")
+action_mode = 0
+text = "="
+flat = true
+
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]

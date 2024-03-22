@@ -1,0 +1,174 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgdxocgnnbf1v"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_f41fx"]
+[ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="1_jsjvu"]
+[ext_resource type="StyleBox" uid="uid://c7e3ekqxdgnam" path="res://assets/button_disabled.tres" id="2_b0gbu"]
+[ext_resource type="StyleBox" uid="uid://5xmq7qx6lyt1" path="res://assets/button_fh.tres" id="3_7xaad"]
+[ext_resource type="StyleBox" uid="uid://dfojhhfm26pbu" path="res://assets/button_press.tres" id="3_e3sul"]
+[ext_resource type="Texture2D" uid="uid://d28xunckjw4hp" path="res://ludlogo.png" id="5_26oa7"]
+
+[sub_resource type="SystemFont" id="SystemFont_ifxwc"]
+font_names = PackedStringArray("Corbel")
+font_weight = 950
+font_stretch = 150
+force_autohinter = true
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_31jeq"]
+font_names = PackedStringArray("Sans-Serif")
+font_stretch = 200
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[node name="mainmenu" type="CanvasLayer"]
+script = ExtResource("1_f41fx")
+
+[node name="PlayButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 239.0
+offset_right = 144.0
+offset_bottom = 300.0
+grow_horizontal = 2
+theme_override_styles/normal = ExtResource("1_jsjvu")
+theme_override_styles/hover = ExtResource("3_7xaad")
+theme_override_styles/pressed = ExtResource("3_e3sul")
+theme_override_styles/disabled = ExtResource("2_b0gbu")
+theme_override_styles/focus = ExtResource("3_7xaad")
+action_mode = 0
+text = "Play"
+
+[node name="ShopButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 308.0
+offset_right = 144.0
+offset_bottom = 369.0
+grow_horizontal = 2
+theme_override_styles/normal = ExtResource("1_jsjvu")
+theme_override_styles/hover = ExtResource("3_7xaad")
+theme_override_styles/pressed = ExtResource("3_e3sul")
+theme_override_styles/disabled = ExtResource("2_b0gbu")
+theme_override_styles/focus = ExtResource("3_7xaad")
+disabled = true
+action_mode = 0
+text = "Shop"
+
+[node name="WorkbenchButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 377.0
+offset_right = 144.0
+offset_bottom = 438.0
+grow_horizontal = 2
+theme_override_styles/normal = ExtResource("1_jsjvu")
+theme_override_styles/hover = ExtResource("3_7xaad")
+theme_override_styles/pressed = ExtResource("3_e3sul")
+theme_override_styles/disabled = ExtResource("2_b0gbu")
+theme_override_styles/focus = ExtResource("3_7xaad")
+disabled = true
+action_mode = 0
+text = "Workbench"
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 511.0
+offset_right = 144.0
+offset_bottom = 572.0
+grow_horizontal = 2
+theme_override_styles/normal = ExtResource("1_jsjvu")
+theme_override_styles/hover = ExtResource("3_7xaad")
+theme_override_styles/pressed = ExtResource("3_e3sul")
+theme_override_styles/disabled = ExtResource("2_b0gbu")
+theme_override_styles/focus = ExtResource("3_7xaad")
+action_mode = 0
+text = "Quit"
+
+[node name="SettingsButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 446.0
+offset_right = 144.0
+offset_bottom = 507.0
+grow_horizontal = 2
+theme_override_styles/normal = ExtResource("1_jsjvu")
+theme_override_styles/hover = ExtResource("3_7xaad")
+theme_override_styles/pressed = ExtResource("3_e3sul")
+theme_override_styles/disabled = ExtResource("2_b0gbu")
+theme_override_styles/focus = ExtResource("3_7xaad")
+disabled = true
+action_mode = 0
+text = "Settings"
+
+[node name="LeamLogo" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -246.0
+offset_right = -155.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.69637, 8.22339)
+theme_override_colors/font_color = Color(0.713726, 0.713726, 0.713726, 1)
+theme_override_fonts/font = SubResource("SystemFont_ifxwc")
+theme_override_font_sizes/font_size = 17
+text = "Leam"
+
+[node name="LudLogo" type="TextureRect" parent="."]
+offset_left = 958.0
+offset_top = 561.0
+offset_right = 1265.0
+offset_bottom = 744.0
+scale = Vector2(0.6, 0.42)
+texture = ExtResource("5_26oa7")
+
+[node name="Version" type="Label" parent="."]
+offset_right = 68.0
+offset_bottom = 20.0
+scale = Vector2(1.2, 1.2)
+theme_override_fonts/font = SubResource("SystemFont_31jeq")
+text = "Alpha 1.5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LastScore" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 117.0
+offset_bottom = -21.0
+grow_vertical = 0
+size_flags_horizontal = 0
+text = "Last Score: 0"
+
+[node name="BestScore" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 169.0
+grow_vertical = 0
+size_flags_horizontal = 0
+text = "Best Score: undefined"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
