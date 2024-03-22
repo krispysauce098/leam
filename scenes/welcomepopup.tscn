@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c3m305c0dk8u1"]
+
+[node name="HFTP" type="Window"]
+mode = 2
+title = "Leam"
+initial_position = 1
+size = Vector2i(759, 283)
+wrap_controls = true
+
+[node name="VScrollBar" type="VScrollBar" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+page = 2.0
+
+[node name="Label" type="Label" parent="."]
+offset_right = 571.0
+offset_bottom = 101.0
+text = "Hi gamer or critic! Nice to see you there.
+
+This is alpha 1.5, as you can see from the top-left corner.
+While you were somewhere, I made multiple updates without uploading it on itch.io
+I don't have to talk about those, for now.
+
+I tried my best for this update but there are some bugs that I noticed but didn't know how to fix.
+The graphics too are all squares, feel free to blame me. I am bad at drawing.
+I tried to make it look nice with the particles.
+
+Thanks for reading and enjoy this boring game :)
+"
+horizontal_alignment = 1

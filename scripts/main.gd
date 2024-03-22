@@ -70,9 +70,9 @@ func newgame():
 	$RPEmitter.emitting = true
 	$Fox43AttackTimer.start()
 	$Fox43AttackTimer/Fox43ReadyTimer.wait_time = $Fox43AttackTimer.wait_time / 3 / 0.75
-	$Fox43AttackTimer/Fox43ReadyTimer.start()
 	$ScoreTimer.start()
 	$SpawnTimer.wait_time = randf_range(0.5, 1)
+	$Fox43AttackTimer/Fox43ReadyTimer.start
 	print("Fox43AttackTimer started")
 	print("Fox43ReadyTimer started")
 	$Fox43/rady.visible = true
@@ -95,6 +95,7 @@ func pause():
 	$ScoreTimer.paused = true
 	$SpawnTimer.paused = true
 	$RPEmitter.speed_scale = 0
+	$Stars.speed_scale = 0
 	get_tree().call_group("asteroid", "set_linear_velocity", Vector2(0, 0))
 
 func resume():
@@ -109,6 +110,7 @@ func resume():
 	$ScoreTimer.paused = false
 	$SpawnTimer.paused = false
 	$RPEmitter.speed_scale = 64
+	$Stars.speed_scale = 1
 	get_tree().call_group("asteroid", "set_linear_velocity", Vector2(0, 435))
 
 func setting_menu():
@@ -144,7 +146,6 @@ func _on_fox_43_attack_timer_timeout():
 	$Fox43AttackTimer.start()
 	$Fox43AttackTimer/Fox43ReadyTimer.wait_time = $Fox43AttackTimer.wait_time / 3 / 0.75
 	$Fox43AttackTimer/Fox43ReadyTimer.start()
-	$Fox43AttackTimer/Fox43LaserTimer.wait_time = $Fox43AttackTimer.wait_time / 3 
 	print("Fox43MoveTimer started")
 	print("Fox43ReadyTimer started")
 	$Fox43/rady.visible = true
@@ -181,6 +182,7 @@ func _on_fox_43_area_entered(area):
 				$BlastedDebris.emitting = true
 			else:
 				$BlastedDebris.emitting = false
+			$Player/Blasted.playing = true
 			playing = false
 			await get_tree().create_timer(randf_range(1, 1.5)).timeout
 			gameover(1, "Player got blinded by a mini death star")
@@ -209,6 +211,7 @@ func _on_spawn_timer_timeout():
 	
 	var velocity = Vector2(435.0, 0.0)
 	asteroid.linear_velocity = velocity.rotated(directon)
+	
 	
 	add_child(asteroid)
 
@@ -249,3 +252,7 @@ func _on_pause_menu_quit_press():
 
 func _on_main_menu_quit_press():
 	get_tree().quit()
+
+
+func _on_hftp_close_requested():
+	$HFTP.hide()
