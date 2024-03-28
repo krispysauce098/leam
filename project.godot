@@ -11,18 +11,19 @@ config_version=5
 [application]
 
 config/name="Leam"
-config/version="Alpha 0.1.3"
+config/description="Dodge lasers and asteroids!"
+config/version="1.7"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://ludlogo.png"
 boot_splash/fullsize=false
-config/icon="res://icon.svg"
+config/icon="res://assets/textures/player/10110.svg"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 
