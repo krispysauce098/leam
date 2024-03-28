@@ -11,6 +11,7 @@ var firstplay: bool = true
 var foxblast: bool = false
 var pausest: bool = false
 @export var asteroid_scene: PackedScene
+var tisten: int
 
 # Signals
 signal gamenew
@@ -122,6 +123,14 @@ func _process(delta):
 	$RPEmitter.position = $Player.position
 	$Debris.position = $Player.position
 	$BlastedDebris.position = $Player.position
+	if tisten == 110:
+		tisten = 110
+		$UI/HUD/tisten.visible = true
+		await get_tree().create_timer(randf_range(30, 60)).timeout
+		tisten = 1
+	else:
+		tisten = randi_range(1, 200)
+		$UI/HUD/tisten.visible = false
 	if playing == false:
 		$RPEmitter.emitting = false
 	if playing == true:
@@ -130,6 +139,7 @@ func _process(delta):
 	if player.visible == true:
 		if $UI/MainMenu.visible == true:
 			print("Bug #2 Detected.")
+			gameover(3, "Forgot it was not on a mission.")
 	pass
 
 
@@ -195,7 +205,12 @@ func _on_score_timer_timeout():
 
 
 func _on_spawn_timer_timeout():
-	$SpawnTimer.wait_time = randf_range(0.25, 0.75)
+	print("Tisten Bolt Number: ", tisten)
+	if tisten == 110:
+		$SpawnTimer.wait_time = randf_range(0.01, 0.3)
+		print("Spaceship slept and discovered he was in a Tisten Bolt")
+	else:
+		$SpawnTimer.wait_time = randf_range(0.25, 0.75)
 	$SpawnTimer.start()
 	
 	var asteroid = asteroid_scene.instantiate()
@@ -221,6 +236,7 @@ func _on_player_body_entered(body):
 		player.set_process(false)
 		player.visible = false
 		$Debris.emitting = true
+		$RPEmitter.emitting = false
 		$Player/Crushed.playing = true
 		b = body
 		playing = false

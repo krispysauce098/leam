@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var game = get_node("../..")
 signal quit_press
+signal setting_press
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,4 +28,4 @@ func set_best_score(bs):
 
 
 func _on_settings_button_pressed():
-	pass # Replace with function body.
+	emit_signal("setting_press")

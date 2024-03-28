@@ -19,18 +19,23 @@ func _process(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move-down"):
 		velocity.y += 1
+		$sprite.rotation = 0
 	if Input.is_action_pressed("move-up"):
 		velocity.y -= 1
+		$sprite.rotation = 0
 	if Input.is_action_pressed("move-left"):
 		velocity.x -= 1
+		$sprite.rotation = 25
 	if Input.is_action_pressed("move-right"):
 		velocity.x += 1
+		$sprite.rotation = -25
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		emit_signal("player_move")
 	else:
 		emit_signal("player_stop_move")
+		$sprite.rotation = 0
 	
 	# Prevents the player from going out of the screen
 	position += velocity * delta

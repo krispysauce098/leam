@@ -2,29 +2,42 @@
 
 [node name="HFTP" type="Window"]
 mode = 2
-title = "Leam"
-initial_position = 1
-size = Vector2i(759, 283)
+title = "Changelog"
+initial_position = 2
+size = Vector2i(325, 325)
 wrap_controls = true
+exclusive = true
 
-[node name="VScrollBar" type="VScrollBar" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-page = 2.0
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -161.0
+offset_right = 161.0
+offset_bottom = 322.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center][b]Alpha 1.7[/b]
+Tisten Bolt!!!
 
-[node name="Label" type="Label" parent="."]
-offset_right = 571.0
-offset_bottom = 101.0
-text = "Hi gamer or critic! Nice to see you there.
+What has changed from Alpha 1.5:
+[b]-[/b] What you are looking at right now
+[b]-[/b] The version number
+[b]-[/b] A measure was added to counter Bug #2
+[b]-[/b] UI is anchored, try to resize the window.
+[b]-[/b] Player sprite changed to something else that looks better than the original white square used as a placeholder
+[b]-[/b] Player now rotates according to direction
+[b]-[/b] Asteroid sprite changed from the white square placeholder
+[b]-[/b] Tisten Bolt mechanic added, the tisten bolt will be indicated with a warning at the bottom left, and the tisten bolt is simply a rapid spawning of 
+asteroids
+[b]-[/b] The settings are being implemented, the setting button is no longer disabled but don't expect
+ANYTHING
 
-This is alpha 1.5, as you can see from the top-left corner.
-While you were somewhere, I made multiple updates without uploading it on itch.io
-I don't have to talk about those, for now.
+The enemy sprite is the only one left in the corner of white rectangles
+The update for 2.0 will be implementing a save mechanic.
+But hey, that's just a theory, a ____ theory! Hahahaha, wait, this is a changelog!!!!
 
-I tried my best for this update but there are some bugs that I noticed but didn't know how to fix.
-The graphics too are all squares, feel free to blame me. I am bad at drawing.
-I tried to make it look nice with the particles.
+[i][b]- L10110[/b][/i]
+[/center]
 
-Thanks for reading and enjoy this boring game :)
 "
-horizontal_alignment = 1

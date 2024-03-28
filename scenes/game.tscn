@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bus7uxnallepi"]
+[gd_scene load_steps=18 format=3 uid="uid://bus7uxnallepi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2362y"]
 [ext_resource type="PackedScene" uid="uid://ci4crteo4oo8f" path="res://scenes/fox_43.tscn" id="2_lhrow"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" uid="uid://chnp7vff54xnu" path="res://shaders/rocketparticle.tres" id="9_aiq70"]
 [ext_resource type="PackedScene" uid="uid://b03vymllo0eva" path="res://scenes/pausemenu.tscn" id="10_vvo28"]
 [ext_resource type="PackedScene" uid="uid://c3m305c0dk8u1" path="res://scenes/welcomepopup.tscn" id="13_1i1wt"]
+[ext_resource type="PackedScene" uid="uid://dtfeioyvygr0o" path="res://scenes/options.tscn" id="13_04ppo"]
 
 [sub_resource type="Curve2D" id="Curve2D_t8p54"]
 _data = {
@@ -47,7 +48,7 @@ rotation = 3.14159
 progress = 576.0
 
 [node name="RPEmitter" type="GPUParticles2D" parent="."]
-position = Vector2(432, -95)
+position = Vector2(213, -183)
 amount = 350
 process_material = SubResource("ShaderMaterial_mgiaq")
 lifetime = 25.0
@@ -76,7 +77,6 @@ stream = ExtResource("5_hrdlc")
 
 [node name="Player" parent="." instance=ExtResource("3_855v3")]
 position = Vector2(576, 547)
-speed = 350
 
 [node name="Crushed" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("6_hijle")
@@ -129,6 +129,9 @@ visible = false
 [node name="PauseMenu" parent="UI/HUD" instance=ExtResource("10_vvo28")]
 visible = false
 
+[node name="Settings" parent="UI" instance=ExtResource("13_04ppo")]
+visible = false
+
 [node name="Stars" type="CPUParticles2D" parent="."]
 position = Vector2(576, 0)
 amount = 200
@@ -143,8 +146,7 @@ scale_amount_min = 2.0
 scale_amount_max = 2.0
 
 [node name="HFTP" parent="." instance=ExtResource("13_1i1wt")]
-size = Vector2i(600, 101)
-wrap_controls = false
+mode = 0
 popup_window = true
 
 [connection signal="area_entered" from="Fox43" to="." method="_on_fox_43_area_entered"]
