@@ -10,6 +10,7 @@ var playing: bool = false
 var firstplay: bool = true
 var foxblast: bool = false
 var pausest: bool = false
+## The scene for the asteroid
 @export var asteroid_scene: PackedScene
 var tisten: int
 
@@ -117,6 +118,12 @@ func resume():
 func setting_menu():
 	pass
 
+func save_game():
+	pass
+
+func load_game():
+	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta):
@@ -129,7 +136,7 @@ func _process(delta):
 		await get_tree().create_timer(randf_range(30, 60)).timeout
 		tisten = 1
 	else:
-		tisten = randi_range(1, 200)
+		tisten = randi_range(0, 1000)
 		$UI/HUD/tisten.visible = false
 	if playing == false:
 		$RPEmitter.emitting = false
