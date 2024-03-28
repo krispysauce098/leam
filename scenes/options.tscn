@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtfeioyvygr0o"]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_egohg"]
+
+[node name="Settings" type="Window"]
+mode = 2
+title = "Settings"
+initial_position = 2
+size = Vector2i(119, 100)
+wrap_controls = true
+exclusive = true
+always_on_top = true
+script = ExtResource("1_egohg")
+
+[node name="V" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="H1" type="HBoxContainer" parent="V"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="V/H1"]
+layout_mode = 2
+text = "Speed"
+
+[node name="T" type="LineEdit" parent="V/H1"]
+layout_mode = 2
+text = "400"
+virtual_keyboard_type = 2
+
+[node name="Label" type="Label" parent="V"]
+layout_mode = 2
+text = "!Integer only!"
