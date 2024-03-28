@@ -14,6 +14,15 @@ var pausest: bool = false
 @export var asteroid_scene: PackedScene
 var tisten: int
 
+# Analytics
+var games_played: int
+var all_lasers_dodged: int
+var last_lasers_dodged: int
+var best_lasers_dodged: int
+var all_tisten_bolts_survived: int
+var last_tisten_bolts_survived: int
+var best_tisten_bolts_survived: int
+
 # Signals
 signal gamenew
 signal overgame
@@ -39,6 +48,10 @@ func gameover(code: int, reason: String):
 	playing = false
 	if currentScore > bestScore:
 		bestScore = currentScore
+	if last_lasers_dodged > best_lasers_dodged:
+		best_lasers_dodged = last_lasers_dodged
+	if last_tisten_bolts_survived > best_tisten_bolts_survived:
+		best_tisten_bolts_survived = last_tisten_bolts_survived
 	$UI/HUD/PauseMenu.visible = false
 	firstplay = false
 	resume()
@@ -57,10 +70,19 @@ func gameover(code: int, reason: String):
 	player.set_process(false)
 	player.visible = false
 	
+	# Print analytics
+	print("Games Played: ", games_played)
+	print("All lasers dodged: ", all_lasers_dodged)
+	print("Last lasers dodged: ", last_lasers_dodged)
+	print("Best lasers dodged: ", best_lasers_dodged)
+	print("All tisten bolts survived: ", all_tisten_bolts_survived)
+	print("Last tisten bolts survived: ", last_tisten_bolts_survived)
+	print("Best tisten bolts survived: ", best_tisten_bolts_survived)
 
 func newgame():
 	playing = true
 	print("AP-1-110 is ready to launch! BPHUUUUUUU!!!!")
+	games_played += 1
 	player.set_process(true)
 	fox43.set_process(true)
 	player.visible = true
@@ -84,6 +106,8 @@ func newgame():
 	$UI/MainMenu.visible = false
 	$UI/HUD.visible = true
 	currentScore = 0
+	last_lasers_dodged = 0
+	last_tisten_bolts_survived = 0
 	
 func pause():
 	pausest = true
@@ -135,6 +159,8 @@ func _process(delta):
 		$UI/HUD/tisten.visible = true
 		await get_tree().create_timer(randf_range(30, 60)).timeout
 		tisten = 1
+		all_tisten_bolts_survived += 1
+		last_tisten_bolts_survived += 1
 	else:
 		tisten = randi_range(0, 1000)
 		$UI/HUD/tisten.visible = false
@@ -172,6 +198,8 @@ func _on_fox_43_attack_timer_timeout():
 	foxblast = false
 	if playing == true:
 		currentScore += 1
+		all_lasers_dodged += 1
+		last_lasers_dodged += 1
 
 
 func _on_fox_43_ready_timer_timeout():
