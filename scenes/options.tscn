@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtfeioyvygr0o"]
+[gd_scene load_steps=6 format=3 uid="uid://dtfeioyvygr0o"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_egohg"]
+[ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="2_yojek"]
+[ext_resource type="StyleBox" uid="uid://dfojhhfm26pbu" path="res://assets/button_press.tres" id="3_3go1y"]
+[ext_resource type="StyleBox" uid="uid://5xmq7qx6lyt1" path="res://assets/button_fh.tres" id="4_1aqgf"]
+[ext_resource type="StyleBox" uid="uid://c7e3ekqxdgnam" path="res://assets/button_disabled.tres" id="5_ghxfq"]
 
 [node name="Settings" type="Window"]
 mode = 2
@@ -13,21 +17,43 @@ always_on_top = true
 script = ExtResource("1_egohg")
 
 [node name="V" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -44.5
+offset_right = 43.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="H1" type="HBoxContainer" parent="V"]
+[node name="Reset Save" type="Button" parent="V"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("2_yojek")
+theme_override_styles/hover = ExtResource("4_1aqgf")
+theme_override_styles/pressed = ExtResource("3_3go1y")
+theme_override_styles/focus = ExtResource("4_1aqgf")
+text = "Reset Save"
 
-[node name="Label" type="Label" parent="V/H1"]
+[node name="Changelog" type="Button" parent="V"]
 layout_mode = 2
-text = "Speed"
+theme_override_styles/normal = ExtResource("2_yojek")
+theme_override_styles/hover = ExtResource("4_1aqgf")
+theme_override_styles/pressed = ExtResource("3_3go1y")
+theme_override_styles/focus = ExtResource("4_1aqgf")
+text = "Changelog"
 
-[node name="T" type="LineEdit" parent="V/H1"]
+[node name="Credits" type="Button" parent="V"]
 layout_mode = 2
-text = "400"
-virtual_keyboard_type = 2
+theme_override_styles/normal = ExtResource("2_yojek")
+theme_override_styles/hover = ExtResource("4_1aqgf")
+theme_override_styles/pressed = ExtResource("3_3go1y")
+theme_override_styles/disabled = ExtResource("5_ghxfq")
+theme_override_styles/focus = ExtResource("4_1aqgf")
+disabled = true
+text = "Credits"
 
-[node name="Label" type="Label" parent="V"]
-layout_mode = 2
-text = "!Integer only!"
+[connection signal="pressed" from="V/Reset Save" to="." method="_on_reset_save_pressed"]
+[connection signal="pressed" from="V/Changelog" to="." method="_on_changelog_pressed"]

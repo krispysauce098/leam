@@ -3,8 +3,9 @@ extends Node
 @onready var fox43 = get_node("Fox43")
 @onready var player = get_node("Player")
 @onready var f43mp = get_node("Fox43MovePath/Fox43Point")
+
 var currentScore: int = 0
-var distance = 0
+var distance: int = 0
 var bestScore:int = 0 # I need to save this on a file, later on a file which is backed up to the cloud. 
 var playing: bool = false
 var firstplay: bool = true
@@ -13,6 +14,8 @@ var pausest: bool = false
 ## The scene for the asteroid
 @export var asteroid_scene: PackedScene
 var tisten: int
+var save = GameSave.new()
+var saved = load("user://save.res")
 
 # Analytics
 var games_played: int
@@ -29,7 +32,7 @@ signal overgame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Spaceship booted up, an imposter is among us. Hardware Version: AP-1-110")
+	print("Spaceship booted up, an imposter is among us. Hardware Version: AP-10-0")
 	player.set_process(false)
 	player.visible = false
 	player.position = $Startpos.position
@@ -37,14 +40,22 @@ func _ready():
 	fox43.position = f43mp.position
 	fox43.set_process(false)
 	fox43.visible = false
+	
+	# For load
+	load_game()
+	
 	$UI/MainMenu.set_last_score(str(currentScore))
 	$UI/MainMenu.set_best_score(str(bestScore))
 	$UI/MainMenu.visible = true
 	$SpawnTimer.start()
+	
+	if firstplay == false:
+		$HFTP.hide()
+	
 
 func gameover(code: int, reason: String):
 	print("Spaceship ate at starbucks, order: ", str(code)," Reason: ", reason)
-	currentScore = currentScore + distance
+	currentScore = currentScore + distance + last_tisten_bolts_survived
 	playing = false
 	if currentScore > bestScore:
 		bestScore = currentScore
@@ -78,6 +89,8 @@ func gameover(code: int, reason: String):
 	print("All tisten bolts survived: ", all_tisten_bolts_survived)
 	print("Last tisten bolts survived: ", last_tisten_bolts_survived)
 	print("Best tisten bolts survived: ", best_tisten_bolts_survived)
+	
+	save_game()
 
 func newgame():
 	playing = true
@@ -143,10 +156,32 @@ func setting_menu():
 	pass
 
 func save_game():
-	pass
+	save.best_score = bestScore
+	save.all_tisten_bolts_survived = all_tisten_bolts_survived
+	save.best_lasers_dodged = best_lasers_dodged
+	save.best_tisten_bolts_survived = best_tisten_bolts_survived
+	save.first_play = firstplay
+	save.games_played = games_played
+	save.all_lasers_dodged = all_lasers_dodged
+	save.best_lasers_dodged = best_lasers_dodged
+	var sucess = ResourceSaver.save(save, "user://save.res")
+	assert(sucess == OK)
+	print("Sucess: ", sucess)
 
 func load_game():
-	pass
+	var dem = load("user://save.res")
+	if dem == null:
+		save = GameSave.new()
+	else:
+		save = dem
+	bestScore = save.best_score
+	all_tisten_bolts_survived = save.all_tisten_bolts_survived
+	best_lasers_dodged = save.best_lasers_dodged
+	best_tisten_bolts_survived = save.best_tisten_bolts_survived
+	firstplay = save.first_play
+	games_played = save.games_played
+	all_lasers_dodged = save.all_lasers_dodged
+	best_lasers_dodged = save.best_lasers_dodged
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -223,6 +258,7 @@ func _on_fox_43_area_entered(area):
 		if area == get_node("Player"):
 			player.set_process(false)
 			player.visible = false
+			$RPEmitter.emitting = false
 			if foxblast == true:
 				$BlastedDebris.emitting = true
 			else:
@@ -294,16 +330,52 @@ func _on_fox_43_move_timer_timeout():
 			fox43.position = f43mp.position
 
 func _on_menu_press():
+	save_game()
 	gameover(3, "Player gone to the main menu that served space meat")
 
 
 func _on_pause_menu_quit_press():
+	save_game()
 	get_tree().quit()
 
 
 func _on_main_menu_quit_press():
+	save_game()
 	get_tree().quit()
 
 
 func _on_hftp_close_requested():
 	$HFTP.hide()
+
+
+func _on_settings_reset():
+	save = GameSave.new()
+	save_game()
+	$HFTP.show()
+	$UI/Settings.hide()
+	get_tree().call_group("asteroid", "queue_free")
+	$UI/MainMenu.set_last_score(str(0))
+	$UI/MainMenu.set_best_score(str(0))
+	gameover(4, "Player broke his spaceship")
+	push_error("Reset does not work well, to be fixed.")
+	
+
+
+func _on_settings_close_requested():
+	$UI/Settings.hide()
+
+
+func _on_main_menu_setting_press():
+	$UI/Settings.show()
+
+
+func _on_pause_menu_setting_press():
+	$UI/Settings.show()
+
+
+func _on_settings_changelog_show():
+	$UI/changelog.show()
+
+
+func _on_changelog_close_requested():
+	$UI/changelog.hide()

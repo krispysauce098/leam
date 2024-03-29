@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bus7uxnallepi"]
+[gd_scene load_steps=19 format=3 uid="uid://bus7uxnallepi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2362y"]
 [ext_resource type="PackedScene" uid="uid://ci4crteo4oo8f" path="res://scenes/fox_43.tscn" id="2_lhrow"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b03vymllo0eva" path="res://scenes/pausemenu.tscn" id="10_vvo28"]
 [ext_resource type="PackedScene" uid="uid://c3m305c0dk8u1" path="res://scenes/welcomepopup.tscn" id="13_1i1wt"]
 [ext_resource type="PackedScene" uid="uid://dtfeioyvygr0o" path="res://scenes/options.tscn" id="13_04ppo"]
+[ext_resource type="PackedScene" uid="uid://dru3dtl568u64" path="res://scenes/changelog.tscn" id="14_lyh7a"]
 
 [sub_resource type="Curve2D" id="Curve2D_t8p54"]
 _data = {
@@ -132,6 +133,10 @@ visible = false
 [node name="Settings" parent="UI" instance=ExtResource("13_04ppo")]
 visible = false
 
+[node name="changelog" parent="UI" instance=ExtResource("14_lyh7a")]
+visible = false
+always_on_top = true
+
 [node name="Stars" type="CPUParticles2D" parent="."]
 position = Vector2(576, 0)
 amount = 200
@@ -146,6 +151,7 @@ scale_amount_min = 2.0
 scale_amount_max = 2.0
 
 [node name="HFTP" parent="." instance=ExtResource("13_1i1wt")]
+gui_embed_subwindows = true
 mode = 0
 popup_window = true
 
@@ -161,7 +167,13 @@ popup_window = true
 [connection signal="timeout" from="Fox43AttackTimer/Fox43LaserTimer" to="." method="_on_fox_43_laser_tmer_timeout"]
 [connection signal="timeout" from="Fox43AttackTimer/Fox43MoveTimer" to="." method="_on_fox_43_move_timer_timeout"]
 [connection signal="quit_press" from="UI/MainMenu" to="." method="_on_main_menu_quit_press"]
+[connection signal="setting_press" from="UI/MainMenu" to="." method="_on_main_menu_setting_press"]
 [connection signal="menu_press" from="UI/HUD/PauseMenu" to="." method="_on_menu_press"]
 [connection signal="quit_press" from="UI/HUD/PauseMenu" to="." method="_on_pause_menu_quit_press"]
 [connection signal="resume_press" from="UI/HUD/PauseMenu" to="UI/HUD" method="_on_pause_menu_resume_press"]
+[connection signal="setting_press" from="UI/HUD/PauseMenu" to="." method="_on_pause_menu_setting_press"]
+[connection signal="changelog_show" from="UI/Settings" to="." method="_on_settings_changelog_show"]
+[connection signal="close_requested" from="UI/Settings" to="." method="_on_settings_close_requested"]
+[connection signal="reset" from="UI/Settings" to="." method="_on_settings_reset"]
+[connection signal="close_requested" from="UI/changelog" to="." method="_on_changelog_close_requested"]
 [connection signal="close_requested" from="HFTP" to="." method="_on_hftp_close_requested"]
