@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bn3f62drmyr6h"]
+
+[node name="changelog" type="Window"]
+mode = 2
+title = "Changelog"
+initial_position = 2
+size = Vector2i(325, 325)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.5
+offset_right = 162.5
+offset_bottom = 325.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center][b][i]Leam Alpha 2.0[/i][/b]
+[i]Save, Analyze, and Acheive[/i]
+
+[b]What changed from 1.7?[/b]
+3/29/2024
+[b]-[/b] A save and load mechanisim was added
+[b]-[/b] You can see your analytics in the console, seeing it ingame will be for soon
+[b]-[/b] There's a new score formula which uses data from analytics.
+[b]-[/b] The old changelog is now a tutorial
+[b]-[/b] This changelog has been added
+[b]-[/b] Bug for rocket fire emitter squashed
+[b]-[/b] Barebones for achevements has been laid out.
+
+[/center]"
