@@ -18,3 +18,7 @@ func _on_resume_button_pressed():
 
 func _on_quit_button_pressed():
 	emit_signal("quit_press")
+
+
+func _on_options_button_pressed():
+	emit_signal("setting_press")
