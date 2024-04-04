@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=2 format=3 uid="uid://begm0uqobneg1"]
+
+[ext_resource type="Script" path="res://acheivements.gd" id="1_cjnxj"]
+
+[resource]
+script = ExtResource("1_cjnxj")
+title = "I Saw Him!"
+id = &"bossy"
+description = "You saw bossy, he's very bossy!"
+is_secret = false

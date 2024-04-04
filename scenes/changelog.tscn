@@ -19,13 +19,29 @@ text = "[center][b][i]Leam Alpha 2.0[/i][/b]
 [i]Save, Analyze, and Acheive[/i]
 
 [b]What changed from 1.7?[/b]
-3/29/2024
+3/29/24
 [b]-[/b] A save and load mechanisim was added
 [b]-[/b] You can see your analytics in the console, seeing it ingame will be for soon
 [b]-[/b] There's a new score formula which uses data from analytics.
-[b]-[/b] The old changelog is now a tutorial
+[b]-[/b] The old changelog is now a tutorial that appears once.
 [b]-[/b] This changelog has been added
 [b]-[/b] Bug for rocket fire emitter squashed
 [b]-[/b] Barebones for achevements has been laid out.
-
+[b]-[/b] Achievement popup has developed
+4/1/24
+[b]-[/b] Player movement backend has been rewritten
+[b]-[/b] With the rewrite, D-pad ans joystick support has been added. Do not expect it to go smoothly though.
+[b]-[/b] Player can freely go anywhere in a resized window and not be blocked by an invisible barrier.
+[b]-[/b] The collision shape of asteroids have been changed.
+[b]-[/b] The first acheivement is created.
+[b]-[/b] Asteroids now very in size and rotation.
+[b]-[/b] Speed control has been added.
+[b]-[/b] Numbers 4-5 now have cooldown
+[b]-[/b] UI Design #1
+4/3/24
+[b]-[/b] Moved distance counter to the top-right
+[b]-[/b] Added healthbar
+4/4/24
+[b]-[/b] New variable: health
+[b]-[/b] health is used in the healthbar
 [/center]"

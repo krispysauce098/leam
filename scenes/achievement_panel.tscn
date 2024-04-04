@@ -1,23 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://qgaefbwms7rb"]
+[gd_scene load_steps=2 format=3 uid="uid://qgaefbwms7rb"]
 
 [ext_resource type="Script" path="res://scripts/AchievementPanel.gd" id="1_um8g5"]
-[ext_resource type="StyleBox" path="res://assets/panel.tres" id="2_08wbp"]
 
 [node name="AchievementPanel" type="CanvasLayer"]
 script = ExtResource("1_um8g5")
 
-[node name="Panel" type="Panel" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -200.0
-offset_bottom = 75.0
-grow_horizontal = 0
-theme_override_styles/panel = ExtResource("2_08wbp")
+[node name="Panel" type="Window" parent="."]
+title = "Achievement"
+position = Vector2i(900, 0)
+size = Vector2i(200, 100)
+visible = false
+wrap_controls = true
+popup_window = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
-layout_mode = 0
 offset_left = 18.0
 offset_top = 17.0
 offset_right = 58.0
 offset_bottom = 57.0
+
+[node name="tits" type="Label" parent="Panel"]
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 184.0
+offset_bottom = 29.0
+text = "[Gay]"
+clip_text = true
+
+[node name="des" type="Label" parent="Panel"]
+offset_left = 16.0
+offset_top = 30.0
+offset_right = 186.0
+offset_bottom = 77.0
+text = "[You ate hamburger]"
+autowrap_mode = 3

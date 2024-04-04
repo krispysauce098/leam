@@ -17,13 +17,15 @@ offset_right = 164.0
 offset_bottom = 325.0
 grow_horizontal = 2
 bbcode_enabled = true
-text = "[center]
-[b]Welome to Leam![/b]
+text = "[center][b]Welome to Leam![/b]
 Leam is a game where you have to dodge a big laser and asteroids!
 
 You can control with keyboard WASD or arrow keys. You can try out with a joystick or a dpad, although i guess you'll have a bad day.
+We also have a speed control, press numbers 1-5 and see what happens, number 3 is the default. Numbers 4 and 5 revert to 1 after a period of time, and have a cooldown.
 
-As of now, the game is incredebtly *wrong spelling dude* simple, you will dodge a laser, which is absolutely the easiest obstacle. The challenge are the asteroids, gear up because there will be a warning at the bottom left when they spawn rapidly.
+As of now, the game is incredebtly *wrong spelling dude* simple, you will dodge a laser, which is absolutely the easiest obstacle. The challenge are the asteroids, gear up..
+
+The cooldown and tisten bolts have an icon at the bottom left to inform you.
 
 And I think that's all to prepare you, thanks for reading this tutorial or whatever.
 [b][i]- L10110[/i][/b]

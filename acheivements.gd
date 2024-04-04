@@ -1,8 +1,9 @@
 extends Resource
+## A Resource that contains information of achievemets
 class_name Achievement
 
 ## The name of the achievement, doesn't need to be unique
-@export var name: String
+@export var title: String
 ## The ID of the achievement, needs to be unique
 @export var id: StringName
 ## The description of the achievement, used to communicate what the achievement does.
@@ -11,5 +12,4 @@ class_name Achievement
 @export var cover_texture: Texture2D
 ## Determines if the achievement is secret or not
 @export var is_secret: bool
-## Says if the player has achieved this achievement or not
-@export var achieved: bool
+@export var complete: bool = false

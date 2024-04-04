@@ -3,6 +3,7 @@ extends Node
 @onready var fox43 = get_node("Fox43")
 @onready var player = get_node("Player")
 @onready var f43mp = get_node("Fox43MovePath/Fox43Point")
+@onready var chapa = get_node("UI/HUD/AchievementPanel")
 
 var currentScore: int = 0
 var distance: int = 0
@@ -43,9 +44,7 @@ func _ready():
 	
 	# For load
 	load_game()
-	
-	$UI/MainMenu.set_last_score(str(currentScore))
-	$UI/MainMenu.set_best_score(str(bestScore))
+
 	$UI/MainMenu.visible = true
 	$SpawnTimer.start()
 	
@@ -71,8 +70,6 @@ func gameover(code: int, reason: String):
 	f43mp.progress_ratio = randf()
 	fox43.position = f43mp.position
 	$UI/HUD.visible = false
-	$UI/MainMenu.set_last_score(str(currentScore))
-	$UI/MainMenu.set_best_score(str(bestScore))
 	$UI/MainMenu.visible = true
 	distance = 0
 	$UI/HUD.distance_show(str(distance))
@@ -169,7 +166,7 @@ func save_game():
 	print("Sucess: ", sucess)
 
 func load_game():
-	var dem = load("user://save.res")
+	var dem = ResourceLoader.load("user://save.res","",ResourceLoader.CACHE_MODE_IGNORE)
 	if dem == null:
 		save = GameSave.new()
 	else:
@@ -214,9 +211,15 @@ func _process(delta):
 func _on_fox_43_attack_timer_timeout():
 	print("Fox43AttacTimer timeout")
 	if playing == true:
-		f43mp.set_position(Vector2($Player.position.x, 0))
-		print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
-		fox43.position = f43mp.position
+		var rand = randi_range(0,10)
+		if rand == 0:
+			f43mp.progress_ratio = randf()
+			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
+			fox43.position = f43mp.position
+		else:
+			f43mp.set_position(Vector2($Player.position.x, 0))
+			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
+			fox43.position = f43mp.position
 	if playing == false:
 		f43mp.progress_ratio = randf()
 		print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
@@ -298,8 +301,11 @@ func _on_spawn_timer_timeout():
 	var velocity = Vector2(435.0, 0.0)
 	asteroid.linear_velocity = velocity.rotated(directon)
 	
-	
 	add_child(asteroid)
+	
+	if asteroid.bossy == 1:
+		$UI/HUD/AchievementPanel.load_achievement("res://achievements/bossy.tres")
+		print("you saw bossy!")
 
 func _on_player_body_entered(body):
 	if playing == true:
@@ -349,15 +355,20 @@ func _on_hftp_close_requested():
 
 
 func _on_settings_reset():
-	save = GameSave.new()
+	save.all_lasers_dodged = 0
+	save.all_tisten_bolts_survived = 0
+	save.best_lasers_dodged = 0
+	save.best_score = 0
+	save.best_tisten_bolts_survived = 0
+	save.first_play = true
+	save.games_played = 0
 	save_game()
+	load_game()
 	$HFTP.show()
 	$UI/Settings.hide()
 	get_tree().call_group("asteroid", "queue_free")
-	$UI/MainMenu.set_last_score(str(0))
-	$UI/MainMenu.set_best_score(str(0))
 	gameover(4, "Player broke his spaceship")
-	push_error("Reset does not work well, to be fixed.")
+	get_tree().quit(1)
 	
 
 
@@ -379,3 +390,9 @@ func _on_settings_changelog_show():
 
 func _on_changelog_close_requested():
 	$UI/changelog.hide()
+
+func _on_player_cooldown_start():
+	$UI/HUD/scool.visible = true
+
+func _on_player_cooldown_end():
+	$UI/HUD/scool.visible = false
