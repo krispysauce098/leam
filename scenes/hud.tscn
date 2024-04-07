@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgdxocgnnbf1v"]
+[gd_scene load_steps=14 format=3 uid="uid://cgdxocgnnbf1v"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_f41fx"]
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="1_jsjvu"]
@@ -13,6 +13,26 @@ font_names = PackedStringArray("Sans-Serif")
 font_stretch = 200
 subpixel_positioning = 0
 multichannel_signed_distance_field = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqivl"]
+bg_color = Color(0.623529, 0.286275, 0.282353, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 15
+
+[sub_resource type="Theme" id="Theme_8njjk"]
+Button/styles/disabled = ExtResource("1_jsjvu")
+Button/styles/focus = SubResource("StyleBoxFlat_tqivl")
+Button/styles/hover = ExtResource("3_7xaad")
+Button/styles/normal = ExtResource("1_jsjvu")
+Button/styles/pressed = ExtResource("3_e3sul")
+Panel/styles/panel = ExtResource("7_8w1vp")
 
 [sub_resource type="SystemFont" id="SystemFont_ykaut"]
 font_names = PackedStringArray("Segoe UI")
@@ -59,7 +79,7 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.2, 1.2)
 theme_override_fonts/font = SubResource("SystemFont_31jeq")
-text = "Alpha 2.0 | Achieveing More"
+text = "Alpha 2.0"
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -88,11 +108,7 @@ offset_top = -65.0
 offset_right = 144.0
 offset_bottom = -4.0
 grow_horizontal = 2
-theme_override_styles/normal = ExtResource("1_jsjvu")
-theme_override_styles/hover = ExtResource("3_7xaad")
-theme_override_styles/pressed = ExtResource("3_e3sul")
-theme_override_styles/disabled = ExtResource("2_b0gbu")
-theme_override_styles/focus = ExtResource("3_7xaad")
+theme = SubResource("Theme_8njjk")
 action_mode = 0
 text = "Play"
 

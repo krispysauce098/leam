@@ -7,7 +7,7 @@ script = ExtResource("1_um8g5")
 
 [node name="Panel" type="Window" parent="."]
 title = "Achievement"
-position = Vector2i(900, 0)
+position = Vector2i(900, 50)
 size = Vector2i(200, 100)
 visible = false
 wrap_controls = true
