@@ -185,6 +185,7 @@ func load_game():
 @warning_ignore("unused_parameter")
 func _process(delta):
 	screen_size = $Player.screen_size
+	fox43.position = Vector2(fox43.position.x, screen_size.y)
 	$RPEmitter.position = $Player.position
 	$Debris.position = $Player.position
 	$BlastedDebris.position = $Player.position
@@ -220,7 +221,7 @@ func _on_fox_43_attack_timer_timeout():
 		if rand == 0:
 			f43mp.progress_ratio = randf()
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
-			fox43.position = f43mp.position
+			fox43.position = Vector2(f43mp.position.x, screen_size.y)
 		else:
 			f43mp.set_position(Vector2($Player.position.x, screen_size.y))
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
@@ -228,7 +229,7 @@ func _on_fox_43_attack_timer_timeout():
 	if playing == false:
 		f43mp.progress_ratio = randf()
 		print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
-		fox43.position = f43mp.position
+		fox43.position = Vector2(f43mp.position.x, screen_size.y)
 	$Fox43AttackTimer.start()
 	$Fox43AttackTimer/Fox43ReadyTimer.wait_time = $Fox43AttackTimer.wait_time / 3 / 0.75
 	$Fox43AttackTimer/Fox43ReadyTimer.start()
