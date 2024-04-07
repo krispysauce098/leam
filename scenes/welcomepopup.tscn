@@ -5,6 +5,7 @@ mode = 2
 title = "Welcome!"
 initial_position = 2
 size = Vector2i(325, 325)
+mouse_passthrough_polygon = PackedVector2Array(0, 0)
 wrap_controls = true
 exclusive = true
 
