@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bus7uxnallepi"]
+[gd_scene load_steps=22 format=3 uid="uid://bus7uxnallepi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2362y"]
 [ext_resource type="PackedScene" uid="uid://ci4crteo4oo8f" path="res://scenes/fox_43.tscn" id="2_lhrow"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dtfeioyvygr0o" path="res://scenes/options.tscn" id="13_04ppo"]
 [ext_resource type="PackedScene" uid="uid://qgaefbwms7rb" path="res://scenes/achievement_panel.tscn" id="13_ndcpj"]
 [ext_resource type="PackedScene" uid="uid://bn3f62drmyr6h" path="res://scenes/changelog.tscn" id="14_lyh7a"]
+[ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="15_yd6qw"]
 
 [sub_resource type="Curve2D" id="Curve2D_t8p54"]
 _data = {
@@ -28,6 +29,9 @@ shader = ExtResource("9_aiq70")
 
 [sub_resource type="Gradient" id="Gradient_wcpsu"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="Theme" id="Theme_efx5v"]
+/styles/Button = ExtResource("15_yd6qw")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_2362y")
@@ -135,6 +139,7 @@ visible = false
 
 [node name="Settings" parent="UI" instance=ExtResource("13_04ppo")]
 visible = false
+theme = SubResource("Theme_efx5v")
 
 [node name="changelog" parent="UI" instance=ExtResource("14_lyh7a")]
 visible = false
@@ -160,7 +165,6 @@ popup_window = true
 
 [connection signal="area_entered" from="Fox43" to="." method="_on_fox_43_area_entered"]
 [connection signal="body_entered" from="Fox43" to="." method="_on_fox_43_body_entered"]
-[connection signal="body_entered" from="Player" to="." method="_on_player_body_entered"]
 [connection signal="cooldown_end" from="Player" to="." method="_on_player_cooldown_end"]
 [connection signal="cooldown_start" from="Player" to="." method="_on_player_cooldown_start"]
 [connection signal="player_move" from="Player" to="." method="_on_player_move"]
