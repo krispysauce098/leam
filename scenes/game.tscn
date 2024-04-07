@@ -38,6 +38,7 @@ script = ExtResource("1_2362y")
 asteroid_scene = ExtResource("7_jyr4k")
 
 [node name="AsteroidPath" type="Path2D" parent="."]
+position = Vector2(0, 648)
 curve = SubResource("Curve2D_t8p54")
 
 [node name="AsteroidSpawnPoint" type="PathFollow2D" parent="AsteroidPath"]

@@ -14,6 +14,7 @@ radius = 1.04627
 size = Vector2(2.16923, 10.1231)
 
 [node name="Fox43" type="Area2D"]
+rotation = 3.14159
 script = ExtResource("1_bwhbh")
 
 [node name="FoxyFoxy" type="Sprite2D" parent="."]
