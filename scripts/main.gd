@@ -17,6 +17,7 @@ var pausest: bool = false
 var tisten: int
 var save = GameSave.new()
 var saved = load("user://save.res")
+var screen_size
 
 # Analytics
 var games_played: int
@@ -33,6 +34,7 @@ signal overgame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var screen_size = $Player.screen_size
 	print("Spaceship booted up, an imposter is among us. Hardware Version: AP-10-0")
 	player.set_process(false)
 	player.visible = false
@@ -182,6 +184,7 @@ func load_game():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta):
+	screen_size = $Player.screen_size
 	$RPEmitter.position = $Player.position
 	$Debris.position = $Player.position
 	$BlastedDebris.position = $Player.position
@@ -208,7 +211,6 @@ func _process(delta):
 		if $UI/MainMenu.visible == true:
 			print("Bug #2 Detected.")
 			gameover(3, "Forgot it was not on a mission.")
-	pass
 
 
 func _on_fox_43_attack_timer_timeout():
@@ -220,7 +222,7 @@ func _on_fox_43_attack_timer_timeout():
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
 			fox43.position = f43mp.position
 		else:
-			f43mp.set_position(Vector2($Player.position.x, 0))
+			f43mp.set_position(Vector2($Player.position.x, screen_size.y))
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
 			fox43.position = f43mp.position
 	if playing == false:
