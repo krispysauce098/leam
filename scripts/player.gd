@@ -1,19 +1,19 @@
-extends CharacterBody2D
+extends Area2D
 
 # Signals
 signal player_move
 signal player_stop_move
 signal cooldown_start
 signal cooldown_end
-signal body_entered
 
 # Declare member variables here.
-@export var speed = 400
+@export var speed = 5
 var screen_size
 var i = Input
 var speeds: float = 1
 var cooldown: bool = false
 var health: float = 100
+var velocity
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,9 +22,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	screen_size = get_viewport_rect().size
 	## THe direction of input
+	print(velocity)
 	var input_dir = Input.get_vector("move-left", "move-right", "move-up","move-down")
 	velocity = input_dir
 	
@@ -58,7 +59,7 @@ func _physics_process(delta):
 			speeds = 1
 	
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed * speeds
+		position += velocity.normalized() * speed * speeds
 		emit_signal("player_move")
 	else:
 		emit_signal("player_stop_move")
@@ -67,8 +68,6 @@ func _physics_process(delta):
 	# Prevents the player from going out of the screen
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	
-	move_and_slide()
 
 
 func _on_cooldown_start():

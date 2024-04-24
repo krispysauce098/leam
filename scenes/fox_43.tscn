@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci4crteo4oo8f"]
+[gd_scene load_steps=7 format=3 uid="uid://ci4crteo4oo8f"]
 
 [ext_resource type="Script" path="res://scenes/fox_43.gd" id="1_bwhbh"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_b4kdk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruumo"]
-size = Vector2(253, 52)
+[ext_resource type="Texture2D" uid="uid://bs32mst6754a8" path="res://assets/textures/enemies/fox43.svg" id="2_2jyy1"]
+[ext_resource type="Texture2D" uid="uid://cqcsne2fagmlb" path="res://assets/textures/enemies/rady.svg" id="3_4d5gr"]
+[ext_resource type="Texture2D" uid="uid://c58vl10pqbonv" path="res://assets/textures/enemies/laser.svg" id="4_lqe7e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5hl7"]
 radius = 1.04627
@@ -18,38 +16,33 @@ rotation = 3.14159
 script = ExtResource("1_bwhbh")
 
 [node name="FoxyFoxy" type="Sprite2D" parent="."]
-position = Vector2(0.5, 16)
-scale = Vector2(426.92, 52)
-texture = SubResource("CanvasTexture_b4kdk")
+position = Vector2(3.09862, 150)
+scale = Vector2(0.298415, -0.297443)
+texture = ExtResource("2_2jyy1")
 
 [node name="rady" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, 50)
-scale = Vector2(97.72, 84.2637)
-texture = SubResource("CanvasTexture_b4kdk")
+position = Vector2(5.99965, 137)
+texture = ExtResource("3_4d5gr")
 
 [node name="Laser" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-1, 346.98)
-scale = Vector2(137.8, 652.04)
-texture = SubResource("CanvasTexture_b4kdk")
-
-[node name="BangDie" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
-scale = Vector2(1.7, 1)
-shape = SubResource("RectangleShape2D_ruumo")
-debug_color = Color(1, 0.6, 0.701961, 0.419608)
+position = Vector2(7.49801, 427.5)
+texture = ExtResource("4_lqe7e")
 
 [node name="LaserDie2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 46)
+position = Vector2(5.19794, 136.98)
 scale = Vector2(65, 65)
 shape = SubResource("CircleShape2D_f5hl7")
 disabled = true
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
 [node name="LaserDie" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 367)
+position = Vector2(7.09789, 445.5)
 scale = Vector2(65, 65)
 shape = SubResource("RectangleShape2D_56wwo")
 disabled = true
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2.09877, 91)
+polygon = PackedVector2Array(474, -91.9988, 435.999, 210.001, 419, 51.0011, 76.9999, 49.0002, 79.9999, 30.0002, 66, 1.00017, 54, -9.99986, 16.0001, -26, -0.999934, -26, -46, -12.0001, -59, 1.99985, -70.0001, 31.9998, -70.0001, 47.9998, -415, 47.9989, -433.001, 209.999, -469, -90.0012)

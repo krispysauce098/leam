@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bn3f62drmyr6h"]
+[gd_scene format=3 uid="uid://rbfuri2cnp2d"]
 
 [node name="changelog" type="Window"]
 mode = 2
@@ -48,4 +48,14 @@ text = "[center][b][i]Leam Alpha 2.0[/i][/b]
 [b]-[/b] Player physics is on the works
 [b]-[/b] The enemy is now chasing you to hell
 [b]-[/b] Asteroids work differently
+4/24/24
+[b]-[/b] Player physics halted
+[b]-[/b] Health bar now works. Just not that good.
+[b]-[/b] THe enemy gone to the workshop and now its big'n'cool
+[b]-[/b] Revert asteroids to the past
+[b]-[/b] Uwu uw uwu uwu uwu uwu now wer going to the factory.
+[b]-[/b] New Logo used for window, app icon, and main sceen.
+
+Stay tuned for another [s]episode[/s] version of \"Leam\".
+On another break!
 [/center]"

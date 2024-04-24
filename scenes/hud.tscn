@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgdxocgnnbf1v"]
+[gd_scene load_steps=13 format=3 uid="uid://cgdxocgnnbf1v"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_f41fx"]
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="1_jsjvu"]
@@ -6,7 +6,8 @@
 [ext_resource type="StyleBox" uid="uid://5xmq7qx6lyt1" path="res://assets/button_fh.tres" id="3_7xaad"]
 [ext_resource type="StyleBox" uid="uid://dfojhhfm26pbu" path="res://assets/button_press.tres" id="3_e3sul"]
 [ext_resource type="Texture2D" uid="uid://d28xunckjw4hp" path="res://ludlogo.png" id="5_26oa7"]
-[ext_resource type="StyleBox" uid="uid://bj436lspdp35w" path="res://assets/panel.tres" id="7_8w1vp"]
+[ext_resource type="StyleBox" uid="uid://cpbuhpi1vpbpe" path="res://assets/panel.tres" id="7_8w1vp"]
+[ext_resource type="Texture2D" uid="uid://w2qnqo8prmtn" path="res://assets/textures/leamlogo.png" id="8_3w1vu"]
 
 [sub_resource type="SystemFont" id="SystemFont_31jeq"]
 font_names = PackedStringArray("Sans-Serif")
@@ -33,19 +34,6 @@ Button/styles/hover = ExtResource("3_7xaad")
 Button/styles/normal = ExtResource("1_jsjvu")
 Button/styles/pressed = ExtResource("3_e3sul")
 Panel/styles/panel = ExtResource("7_8w1vp")
-
-[sub_resource type="SystemFont" id="SystemFont_ykaut"]
-font_names = PackedStringArray("Segoe UI")
-font_italic = true
-font_weight = 825
-font_stretch = 50
-subpixel_positioning = 0
-multichannel_signed_distance_field = true
-
-[sub_resource type="LabelSettings" id="LabelSettings_r5lu5"]
-line_spacing = 5.0
-font = SubResource("SystemFont_ykaut")
-font_size = 140
 
 [sub_resource type="LabelSettings" id="LabelSettings_rkx72"]
 font_size = 40
@@ -204,21 +192,10 @@ theme_override_styles/focus = ExtResource("3_7xaad")
 action_mode = 0
 text = "Settings"
 
-[node name="LeamLogo" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -239.411
-offset_top = -233.702
-offset_right = 236.589
-offset_bottom = -33.7018
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 17
-text = "LEAM"
-label_settings = SubResource("LabelSettings_r5lu5")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Leamlogo" type="Sprite2D" parent="Control"]
+position = Vector2(21.857, -125.257)
+scale = Vector2(0.30087, 0.30087)
+texture = ExtResource("8_3w1vu")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

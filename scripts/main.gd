@@ -93,6 +93,7 @@ func gameover(code: int, reason: String):
 
 func newgame():
 	playing = true
+	player.health = 100
 	print("AP-1-110 is ready to launch! BPHUUUUUUU!!!!")
 	games_played += 1
 	player.set_physics_process(true)
@@ -219,13 +220,14 @@ func _on_fox_43_attack_timer_timeout():
 	if playing == true:
 		var rand = randi_range(0,10)
 		if rand == 0:
-			f43mp.progress_ratio = randf()
-			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
-			fox43.position = Vector2(f43mp.position.x, screen_size.y)
-		else:
 			f43mp.set_position(Vector2($Player.position.x, screen_size.y))
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
 			fox43.position = f43mp.position
+			
+		else:
+			f43mp.progress_ratio = randf()
+			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
+			fox43.position = Vector2(f43mp.position.x, screen_size.y)
 	if playing == false:
 		f43mp.progress_ratio = randf()
 		print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
@@ -273,6 +275,7 @@ func _on_fox_43_area_entered(area):
 			else:
 				$BlastedDebris.emitting = false
 			$Player/Blasted.playing = true
+			player.health = 0
 			playing = false
 			await get_tree().create_timer(randf_range(1, 1.5)).timeout
 			gameover(1, "Player got blinded by a mini death star")
@@ -319,6 +322,7 @@ func _on_player_body_entered(body):
 		$Debris.emitting = true
 		$RPEmitter.emitting = false
 		$Player/Crushed.playing = true
+		player.health = 0
 		b = body
 		playing = false
 		await get_tree().create_timer(randf_range(3, 5)).timeout
