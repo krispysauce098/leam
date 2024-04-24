@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bus7uxnallepi"]
+[gd_scene load_steps=23 format=3 uid="uid://bus7uxnallepi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2362y"]
 [ext_resource type="PackedScene" uid="uid://ci4crteo4oo8f" path="res://scenes/fox_43.tscn" id="2_lhrow"]
@@ -16,12 +16,19 @@
 [ext_resource type="PackedScene" uid="uid://dtfeioyvygr0o" path="res://scenes/options.tscn" id="13_04ppo"]
 [ext_resource type="PackedScene" uid="uid://qgaefbwms7rb" path="res://scenes/achievement_panel.tscn" id="13_ndcpj"]
 [ext_resource type="PackedScene" uid="uid://bn3f62drmyr6h" path="res://scenes/changelog.tscn" id="14_lyh7a"]
+[ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="15_yd6qw"]
+
+[sub_resource type="Curve2D" id="Curve2D_lxiog"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, -1, 0)
+}
+point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_t8p54"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648)
 }
-point_count = 4
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgiaq"]
 shader = ExtResource("9_aiq70")
@@ -29,12 +36,15 @@ shader = ExtResource("9_aiq70")
 [sub_resource type="Gradient" id="Gradient_wcpsu"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
+[sub_resource type="Theme" id="Theme_efx5v"]
+/styles/Button = ExtResource("15_yd6qw")
+
 [node name="Game" type="Node"]
 script = ExtResource("1_2362y")
 asteroid_scene = ExtResource("7_jyr4k")
 
 [node name="AsteroidPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_t8p54")
+curve = SubResource("Curve2D_lxiog")
 
 [node name="AsteroidSpawnPoint" type="PathFollow2D" parent="AsteroidPath"]
 position = Vector2(576, 0)
@@ -45,7 +55,7 @@ progress = 576.0
 curve = SubResource("Curve2D_t8p54")
 
 [node name="Fox43Point" type="PathFollow2D" parent="Fox43MovePath"]
-position = Vector2(576, 0)
+position = Vector2(576, 648)
 rotation = 3.14159
 progress = 576.0
 
@@ -54,6 +64,7 @@ position = Vector2(213, -183)
 amount = 350
 process_material = SubResource("ShaderMaterial_mgiaq")
 lifetime = 25.0
+preprocess = 1.0
 speed_scale = 64.0
 
 [node name="Debris" type="CPUParticles2D" parent="."]
@@ -78,7 +89,7 @@ scale_amount_max = 5.0
 stream = ExtResource("5_hrdlc")
 
 [node name="Player" parent="." instance=ExtResource("3_855v3")]
-position = Vector2(576, 547)
+position = Vector2(576, 151)
 
 [node name="Crushed" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("6_hijle")
@@ -102,7 +113,7 @@ color = Color(0, 0, 0, 1)
 color_ramp = SubResource("Gradient_wcpsu")
 
 [node name="Startpos" type="Marker2D" parent="."]
-position = Vector2(576, 547)
+position = Vector2(576, 151)
 
 [node name="ScoreTimer" type="Timer" parent="."]
 wait_time = 1.5
@@ -135,6 +146,7 @@ visible = false
 
 [node name="Settings" parent="UI" instance=ExtResource("13_04ppo")]
 visible = false
+theme = SubResource("Theme_efx5v")
 
 [node name="changelog" parent="UI" instance=ExtResource("14_lyh7a")]
 visible = false
@@ -160,7 +172,6 @@ popup_window = true
 
 [connection signal="area_entered" from="Fox43" to="." method="_on_fox_43_area_entered"]
 [connection signal="body_entered" from="Fox43" to="." method="_on_fox_43_body_entered"]
-[connection signal="body_entered" from="Player" to="." method="_on_player_body_entered"]
 [connection signal="cooldown_end" from="Player" to="." method="_on_player_cooldown_end"]
 [connection signal="cooldown_start" from="Player" to="." method="_on_player_cooldown_start"]
 [connection signal="player_move" from="Player" to="." method="_on_player_move"]

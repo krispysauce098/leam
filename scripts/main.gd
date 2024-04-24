@@ -4,7 +4,6 @@ extends Node
 @onready var player = get_node("Player")
 @onready var f43mp = get_node("Fox43MovePath/Fox43Point")
 @onready var chapa = get_node("UI/HUD/AchievementPanel")
-
 var currentScore: int = 0
 var distance: int = 0
 var bestScore:int = 0 # I need to save this on a file, later on a file which is backed up to the cloud. 
@@ -14,9 +13,11 @@ var foxblast: bool = false
 var pausest: bool = false
 ## The scene for the asteroid
 @export var asteroid_scene: PackedScene
+@onready var asteroid = asteroid_scene.instantiate()
 var tisten: int
 var save = GameSave.new()
 var saved = load("user://save.res")
+var screen_size
 
 # Analytics
 var games_played: int
@@ -33,6 +34,7 @@ signal overgame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var screen_size = $Player.screen_size
 	print("Spaceship booted up, an imposter is among us. Hardware Version: AP-10-0")
 	player.set_process(false)
 	player.visible = false
@@ -75,7 +77,7 @@ func gameover(code: int, reason: String):
 	$UI/HUD.distance_show(str(distance))
 	
 	# To combat Bug #2
-	player.set_process(false)
+	player.set_physics_process(false)
 	player.visible = false
 	
 	# Print analytics
@@ -93,7 +95,7 @@ func newgame():
 	playing = true
 	print("AP-1-110 is ready to launch! BPHUUUUUUU!!!!")
 	games_played += 1
-	player.set_process(true)
+	player.set_physics_process(true)
 	fox43.set_process(true)
 	player.visible = true
 	fox43.visible = true
@@ -106,7 +108,7 @@ func newgame():
 	$Fox43AttackTimer/Fox43ReadyTimer.wait_time = $Fox43AttackTimer.wait_time / 3 / 0.75
 	$ScoreTimer.start()
 	$SpawnTimer.wait_time = randf_range(0.5, 1)
-	$Fox43AttackTimer/Fox43ReadyTimer.start
+	$Fox43AttackTimer/Fox43ReadyTimer.start()
 	print("Fox43AttackTimer started")
 	print("Fox43ReadyTimer started")
 	$Fox43/rady.visible = true
@@ -132,7 +134,7 @@ func pause():
 	$SpawnTimer.paused = true
 	$RPEmitter.speed_scale = 0
 	$Stars.speed_scale = 0
-	get_tree().call_group("asteroid", "set_linear_velocity", Vector2(0, 0))
+	get_tree().call_group("asteroid", "set_gravity_scale", 0)
 
 func resume():
 	pausest = false
@@ -147,7 +149,6 @@ func resume():
 	$SpawnTimer.paused = false
 	$RPEmitter.speed_scale = 64
 	$Stars.speed_scale = 1
-	get_tree().call_group("asteroid", "set_linear_velocity", Vector2(0, 435))
 
 func setting_menu():
 	pass
@@ -183,9 +184,15 @@ func load_game():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta):
+	screen_size = $Player.screen_size
+	fox43.position = Vector2(fox43.position.x, screen_size.y)
 	$RPEmitter.position = $Player.position
 	$Debris.position = $Player.position
 	$BlastedDebris.position = $Player.position
+	var asteroid_spwan_location = get_node("AsteroidPath/AsteroidSpawnPoint")
+	var directon = asteroid_spwan_location.rotation + PI / 2
+	var velocity = Vector2(435.0, 0.0)
+	asteroid.position += velocity.rotated(directon)
 	if tisten == 110:
 		tisten = 110
 		$UI/HUD/tisten.visible = true
@@ -205,7 +212,6 @@ func _process(delta):
 		if $UI/MainMenu.visible == true:
 			print("Bug #2 Detected.")
 			gameover(3, "Forgot it was not on a mission.")
-	pass
 
 
 func _on_fox_43_attack_timer_timeout():
@@ -215,15 +221,15 @@ func _on_fox_43_attack_timer_timeout():
 		if rand == 0:
 			f43mp.progress_ratio = randf()
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
-			fox43.position = f43mp.position
+			fox43.position = Vector2(f43mp.position.x, screen_size.y)
 		else:
-			f43mp.set_position(Vector2($Player.position.x, 0))
+			f43mp.set_position(Vector2($Player.position.x, screen_size.y))
 			print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
 			fox43.position = f43mp.position
 	if playing == false:
 		f43mp.progress_ratio = randf()
 		print("Fox43Point progress set to ", f43mp.get_progress(), ", the ratio is ", f43mp.get_progress_ratio(), ".")
-		fox43.position = f43mp.position
+		fox43.position = Vector2(f43mp.position.x, screen_size.y)
 	$Fox43AttackTimer.start()
 	$Fox43AttackTimer/Fox43ReadyTimer.wait_time = $Fox43AttackTimer.wait_time / 3 / 0.75
 	$Fox43AttackTimer/Fox43ReadyTimer.start()
@@ -299,18 +305,16 @@ func _on_spawn_timer_timeout():
 	directon += PI
 	
 	var velocity = Vector2(435.0, 0.0)
-	asteroid.linear_velocity = velocity.rotated(directon)
 	
 	add_child(asteroid)
 	
 	if asteroid.bossy == 1:
 		$UI/HUD/AchievementPanel.load_achievement("res://achievements/bossy.tres")
-		print("you saw bossy!")
 
 func _on_player_body_entered(body):
 	if playing == true:
 		var b
-		player.set_process(false)
+		player.set_physics_process(false)
 		player.visible = false
 		$Debris.emitting = true
 		$RPEmitter.emitting = false
@@ -323,9 +327,22 @@ func _on_player_body_entered(body):
 
 func _on_fox_43_body_entered(body):
 	if fox43.visible == true:
-		var pelican: int = randi_range(1, 3)
-		if pelican == 2:
-			body.queue_free()
+		if body == get_node("Player"):
+			player.set_physics_process(false)
+			player.visible = false
+			$RPEmitter.emitting = false
+			if foxblast == true:
+				$BlastedDebris.emitting = true
+			else:
+				$BlastedDebris.emitting = false
+			$Player/Blasted.playing = true
+			playing = false
+			await get_tree().create_timer(randf_range(1, 1.5)).timeout
+			gameover(1, "Player got blinded by a mini death star")
+		if body == asteroid:
+			var pelican: int = randi_range(1, 3)
+			if pelican == 2:
+				body.queue_free()
 
 
 func _on_fox_43_move_timer_timeout():
