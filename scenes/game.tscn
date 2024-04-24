@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b03vymllo0eva" path="res://scenes/pausemenu.tscn" id="10_vvo28"]
 [ext_resource type="PackedScene" uid="uid://c3m305c0dk8u1" path="res://scenes/welcomepopup.tscn" id="13_1i1wt"]
 [ext_resource type="PackedScene" uid="uid://dtfeioyvygr0o" path="res://scenes/options.tscn" id="13_04ppo"]
-[ext_resource type="PackedScene" uid="uid://qgaefbwms7rb" path="res://scenes/achievement_panel.tscn" id="13_ndcpj"]
-[ext_resource type="PackedScene" uid="uid://bn3f62drmyr6h" path="res://scenes/changelog.tscn" id="14_lyh7a"]
+[ext_resource type="PackedScene" path="res://scenes/achievement_panel.tscn" id="13_ndcpj"]
+[ext_resource type="PackedScene" path="res://scenes/changelog.tscn" id="14_lyh7a"]
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="15_yd6qw"]
 
 [sub_resource type="Curve2D" id="Curve2D_lxiog"]
@@ -26,9 +26,9 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_t8p54"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648)
+"points": PackedVector2Array(0, 0, 0, 0, 1152, -2, 0, 0, 0, 0, 174, -2, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgiaq"]
 shader = ExtResource("9_aiq70")
@@ -52,10 +52,11 @@ rotation = 3.14159
 progress = 576.0
 
 [node name="Fox43MovePath" type="Path2D" parent="."]
+position = Vector2(0, 650)
 curve = SubResource("Curve2D_t8p54")
 
 [node name="Fox43Point" type="PathFollow2D" parent="Fox43MovePath"]
-position = Vector2(576, 648)
+position = Vector2(576, -2)
 rotation = 3.14159
 progress = 576.0
 
@@ -84,6 +85,7 @@ scale_amount_min = 5.0
 scale_amount_max = 5.0
 
 [node name="Fox43" parent="." instance=ExtResource("2_lhrow")]
+position = Vector2(0, 650)
 
 [node name="Blast" type="AudioStreamPlayer" parent="Fox43"]
 stream = ExtResource("5_hrdlc")
