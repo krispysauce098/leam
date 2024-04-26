@@ -11,6 +11,7 @@ var playing: bool = false
 var firstplay: bool = true
 var foxblast: bool = false
 var pausest: bool = false
+var t
 ## The scene for the asteroid
 @export var asteroid_scene: PackedScene
 @onready var asteroid = asteroid_scene.instantiate()
@@ -92,6 +93,10 @@ func gameover(code: int, reason: String):
 	save_game()
 
 func newgame():
+	t = create_tween().set_ease(0).set_trans(2).set_parallel()
+	if t:
+		t.kill()
+	t = create_tween().set_ease(0).set_trans(2).set_parallel()
 	playing = true
 	player.health = 100
 	print("AP-1-110 is ready to launch! BPHUUUUUUU!!!!")
@@ -112,12 +117,16 @@ func newgame():
 	$Fox43AttackTimer/Fox43ReadyTimer.start()
 	print("Fox43AttackTimer started")
 	print("Fox43ReadyTimer started")
+	$Fox43/rady.scale = Vector2(0,0)
+	$Fox43/LaserDie2.scale = Vector2(0,0)
 	$Fox43/rady.visible = true
 	$Fox43/LaserDie2.disabled = false
 	$Fox43/Laser.visible = false
 	$Fox43/LaserDie.disabled = true
 	$UI/MainMenu.visible = false
 	$UI/HUD.visible = true
+	t.tween_property($Fox43/rady, "scale", Vector2(1,1), $Fox43AttackTimer/Fox43ReadyTimer.wait_time)
+	t.tween_property($Fox43/LaserDie2, "scale", Vector2(1,1), $Fox43AttackTimer/Fox43ReadyTimer.wait_time)
 	currentScore = 0
 	last_lasers_dodged = 0
 	last_tisten_bolts_survived = 0
@@ -214,9 +223,11 @@ func _process(delta):
 			print("Bug #2 Detected.")
 			gameover(3, "Forgot it was not on a mission.")
 
-
 func _on_fox_43_attack_timer_timeout():
 	print("Fox43AttacTimer timeout")
+	if t:
+		t.kill()
+	t = create_tween().set_ease(0).set_trans(2).set_parallel()
 	if playing == true:
 		var rand = randi_range(0,10)
 		if rand == 0:
@@ -237,6 +248,8 @@ func _on_fox_43_attack_timer_timeout():
 	$Fox43AttackTimer/Fox43ReadyTimer.start()
 	print("Fox43MoveTimer started")
 	print("Fox43ReadyTimer started")
+	$Fox43/rady.scale = Vector2(0,0)
+	$Fox43/LaserDie2.scale = Vector2(0,0)
 	$Fox43/rady.visible = true
 	$Fox43/LaserDie2.disabled = false
 	$Fox43/Laser.visible = false
@@ -246,6 +259,8 @@ func _on_fox_43_attack_timer_timeout():
 		currentScore += 1
 		all_lasers_dodged += 1
 		last_lasers_dodged += 1
+	t.tween_property($Fox43/rady, "scale", Vector2(1,1), $Fox43AttackTimer/Fox43ReadyTimer.wait_time)
+	t.tween_property($Fox43/LaserDie2, "scale", Vector2(1,1), $Fox43AttackTimer/Fox43ReadyTimer.wait_time)
 
 
 func _on_fox_43_ready_timer_timeout():
