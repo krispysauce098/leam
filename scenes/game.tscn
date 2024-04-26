@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dm0cj1miidohj" path="res://sounds/laser.wav" id="5_hrdlc"]
 [ext_resource type="PackedScene" uid="uid://blfgm1mr560o6" path="res://scenes/hud2.tscn" id="6_d4mlq"]
 [ext_resource type="AudioStream" uid="uid://cnv10fsuxl3kq" path="res://sounds/playercrushed.wav" id="6_hijle"]
-[ext_resource type="PackedScene" path="./asteroid.tscn" id="7_jyr4k"]
+[ext_resource type="PackedScene" uid="uid://61xv3x7of50a" path="res://scenes/asteroid.tscn" id="7_jyr4k"]
 [ext_resource type="AudioStream" uid="uid://qdlymguaulqu" path="res://sounds/blasted.wav" id="7_xud54"]
 [ext_resource type="Shader" uid="uid://chnp7vff54xnu" path="res://shaders/rocketparticle.tres" id="9_aiq70"]
 [ext_resource type="PackedScene" uid="uid://b03vymllo0eva" path="res://scenes/pausemenu.tscn" id="10_vvo28"]

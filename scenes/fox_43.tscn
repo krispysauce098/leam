@@ -40,7 +40,7 @@ debug_color = Color(1, 0.6, 0.701961, 0.419608)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(3.80101, 68.5294)
 scale = Vector2(1.52397, 1.51307)
-polygon = PackedVector2Array(252, -42.9994, -250, -44.0006, -230, 119.999, -219, 27.9995, 220, 29.0006, 229, 113.001)
+polygon = PackedVector2Array(252.76, -43.9692, -251.843, -45.2923, -232.814, 119.274, -222.315, 30.7122, 224.544, 28.7306, 233.074, 117.953)
 
 [node name="LaserDie2" type="CollisionShape2D" parent="."]
 position = Vector2(0.999721, 110)
