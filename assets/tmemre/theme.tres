@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="1_pkmcn"]
 [ext_resource type="StyleBox" uid="uid://5xmq7qx6lyt1" path="res://assets/button_fh.tres" id="2_ivgh7"]
 [ext_resource type="StyleBox" uid="uid://dfojhhfm26pbu" path="res://assets/button_press.tres" id="3_x7tym"]
-[ext_resource type="StyleBox" uid="uid://bj436lspdp35w" path="res://assets/panel.tres" id="4_8p0j6"]
+[ext_resource type="StyleBox" uid="uid://cpbuhpi1vpbpe" path="res://assets/panel.tres" id="4_8p0j6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqivl"]
 bg_color = Color(0.623529, 0.286275, 0.282353, 1)
