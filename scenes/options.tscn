@@ -1,33 +1,48 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtfeioyvygr0o"]
+[gd_scene load_steps=7 format=3 uid="uid://dtfeioyvygr0o"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_egohg"]
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="2_yojek"]
 [ext_resource type="StyleBox" uid="uid://dfojhhfm26pbu" path="res://assets/button_press.tres" id="3_3go1y"]
 [ext_resource type="StyleBox" uid="uid://5xmq7qx6lyt1" path="res://assets/button_fh.tres" id="4_1aqgf"]
 [ext_resource type="StyleBox" uid="uid://c7e3ekqxdgnam" path="res://assets/button_disabled.tres" id="5_ghxfq"]
+[ext_resource type="Theme" uid="uid://5fij32bunb7m" path="res://assets/tmemre/theme.tres" id="6_s1vlb"]
 
 [node name="Settings" type="Window"]
 mode = 2
 title = "Settings"
 initial_position = 2
-size = Vector2i(119, 100)
+size = Vector2i(200, 171)
 wrap_controls = true
 exclusive = true
 always_on_top = true
 script = ExtResource("1_egohg")
 
-[node name="V" type="VBoxContainer" parent="."]
-anchors_preset = 8
+[node name="TabBar" type="TabBar" parent="."]
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -44.5
-offset_right = 43.5
-offset_bottom = 44.5
+offset_left = -63.0
+offset_right = 63.0
+offset_bottom = 31.0
 grow_horizontal = 2
-grow_vertical = 2
+tab_count = 2
+clip_tabs = false
+scrolling_enabled = false
+tab_0/title = "Player"
+tab_1/title = "Misc"
+
+[node name="V" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -118.0
+offset_right = 43.5
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Reset Save" type="Button" parent="V"]
 layout_mode = 2
@@ -55,5 +70,31 @@ theme_override_styles/focus = ExtResource("4_1aqgf")
 disabled = true
 text = "Credits"
 
+[node name="V2" type="VBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -118.0
+offset_right = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="H" type="HBoxContainer" parent="V2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="V2/H"]
+layout_mode = 2
+text = "Base Speed"
+
+[node name="speed" type="SpinBox" parent="V2/H"]
+layout_mode = 2
+theme = ExtResource("6_s1vlb")
+value = 10.0
+suffix = "px"
+
+[connection signal="tab_clicked" from="TabBar" to="." method="_on_tab_bar_tab_clicked"]
 [connection signal="pressed" from="V/Reset Save" to="." method="_on_reset_save_pressed"]
 [connection signal="pressed" from="V/Changelog" to="." method="_on_changelog_pressed"]
