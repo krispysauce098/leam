@@ -1,15 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://61xv3x7of50a"]
+[gd_scene load_steps=4 format=3 uid="uid://61xv3x7of50a"]
 
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_ujdbn"]
 [ext_resource type="Texture2D" uid="uid://b7p1yan278t25" path="res://assets/textures/easterbunnyeggys/bossy.png" id="2_0vsw7"]
 [ext_resource type="Texture2D" uid="uid://6chhb7nca2qm" path="res://assets/textures/asteroid/hex.svg" id="2_ky5md"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uf6i8"]
-rough = true
-
 [node name="Asteroid" type="RigidBody2D" groups=["asteroid"]]
-physics_material_override = SubResource("PhysicsMaterial_uf6i8")
-gravity_scale = 0.5
+gravity_scale = 0.0
 script = ExtResource("1_ujdbn")
 
 [node name="Sprite" type="Sprite2D" parent="."]

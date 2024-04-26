@@ -307,7 +307,7 @@ func _on_spawn_timer_timeout():
 	
 	directon += PI
 	
-	var velocity = Vector2(435.0, 0.0)
+	asteroid.linear_velocity = Vector2(0, 435.00)
 	
 	add_child(asteroid)
 	
