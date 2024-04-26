@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b03vymllo0eva" path="res://scenes/pausemenu.tscn" id="10_vvo28"]
 [ext_resource type="PackedScene" uid="uid://c3m305c0dk8u1" path="res://scenes/welcomepopup.tscn" id="13_1i1wt"]
 [ext_resource type="PackedScene" uid="uid://dtfeioyvygr0o" path="res://scenes/options.tscn" id="13_04ppo"]
-[ext_resource type="PackedScene" path="res://scenes/achievement_panel.tscn" id="13_ndcpj"]
-[ext_resource type="PackedScene" path="res://scenes/changelog.tscn" id="14_lyh7a"]
+[ext_resource type="PackedScene" uid="uid://qgaefbwms7rb" path="res://scenes/achievement_panel.tscn" id="13_ndcpj"]
+[ext_resource type="PackedScene" uid="uid://rbfuri2cnp2d" path="res://scenes/changelog.tscn" id="14_lyh7a"]
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="15_yd6qw"]
 
 [sub_resource type="Curve2D" id="Curve2D_lxiog"]
