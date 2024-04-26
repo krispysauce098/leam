@@ -25,7 +25,6 @@ func _ready():
 func _process(delta):
 	screen_size = get_viewport_rect().size
 	## THe direction of input
-	print(velocity)
 	var input_dir = Input.get_vector("move-left", "move-right", "move-up","move-down")
 	velocity = input_dir
 	

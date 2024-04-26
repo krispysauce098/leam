@@ -5,44 +5,45 @@
 [ext_resource type="Texture2D" uid="uid://cqcsne2fagmlb" path="res://assets/textures/enemies/rady.svg" id="3_4d5gr"]
 [ext_resource type="Texture2D" uid="uid://c58vl10pqbonv" path="res://assets/textures/enemies/laser.svg" id="4_lqe7e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f5hl7"]
-radius = 1.04627
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56wwo"]
 size = Vector2(2.16923, 10.1231)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5hl7"]
+radius = 74.1687
 
 [node name="Fox43" type="Area2D"]
 rotation = 3.14159
 script = ExtResource("1_bwhbh")
 
 [node name="FoxyFoxy" type="Sprite2D" parent="."]
-position = Vector2(3.09862, 150)
-scale = Vector2(0.298415, -0.297443)
+position = Vector2(6.99969, 123)
+rotation = 3.14159
+scale = Vector2(0.457192, 0.453922)
 texture = ExtResource("2_2jyy1")
 
 [node name="rady" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(5.99965, 137)
+position = Vector2(0.999721, 110)
 texture = ExtResource("3_4d5gr")
 
 [node name="Laser" type="Sprite2D" parent="."]
-position = Vector2(7.49801, 427.5)
+visible = false
+position = Vector2(0.498091, 395.5)
 texture = ExtResource("4_lqe7e")
 
-[node name="LaserDie2" type="CollisionShape2D" parent="."]
-position = Vector2(5.19794, 136.98)
-scale = Vector2(65, 65)
-shape = SubResource("CircleShape2D_f5hl7")
-disabled = true
-debug_color = Color(1, 0.6, 0.701961, 0.419608)
-
 [node name="LaserDie" type="CollisionShape2D" parent="."]
-position = Vector2(7.09789, 445.5)
+position = Vector2(4.09791, 437.5)
 scale = Vector2(65, 65)
 shape = SubResource("RectangleShape2D_56wwo")
 disabled = true
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(2.09877, 91)
-polygon = PackedVector2Array(474, -91.9988, 435.999, 210.001, 419, 51.0011, 76.9999, 49.0002, 79.9999, 30.0002, 66, 1.00017, 54, -9.99986, 16.0001, -26, -0.999934, -26, -46, -12.0001, -59, 1.99985, -70.0001, 31.9998, -70.0001, 47.9998, -415, 47.9989, -433.001, 209.999, -469, -90.0012)
+position = Vector2(3.80101, 68.5294)
+scale = Vector2(1.52397, 1.51307)
+polygon = PackedVector2Array(252, -42.9994, -250, -44.0006, -230, 119.999, -219, 27.9995, 220, 29.0006, 229, 113.001)
+
+[node name="LaserDie2" type="CollisionShape2D" parent="."]
+position = Vector2(0.999721, 110)
+shape = SubResource("CircleShape2D_f5hl7")
+disabled = true
+debug_color = Color(0, 0, 0, 0.419608)

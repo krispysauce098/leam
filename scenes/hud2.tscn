@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/hud2.gd" id="1_0bcrq"]
 [ext_resource type="Texture2D" uid="uid://du7mes312ip4b" path="res://assets/textures/warnings/tisten.svg" id="2_evs5r"]
-[ext_resource type="Texture2D" path="res://assets/textures/warnings/speed-cooldown.svg" id="3_icxrs"]
+[ext_resource type="Texture2D" uid="uid://bqq2k3sc1oui3" path="res://assets/textures/warnings/speed-cooldown.svg" id="3_icxrs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u6g4"]
 bg_color = Color(0.0509804, 0.027451, 0.0352941, 1)
