@@ -12,11 +12,11 @@ config_version=5
 
 config/name="Leam"
 config/description="Dodge lasers and asteroids!"
-config/version="2.0"
+config/version="2.1"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://ludlogo.png"
+boot_splash/image="res://assets/textures/leamlogo.png"
 boot_splash/fullsize=false
 config/icon="res://10-x Leam Logo.png"
 

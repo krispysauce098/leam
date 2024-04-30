@@ -7,7 +7,7 @@ signal cooldown_start
 signal cooldown_end
 
 # Declare member variables here.
-@export var speed = 5
+var speed = 7
 var screen_size
 var i = Input
 var speeds: float = 1
@@ -20,23 +20,89 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	print(screen_size)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var s = $sprite.texture
+	var dad
+	var sett = load("user://settings.res")
+	speed = sett.speed
+	
+	#inconvenient skin switching.
+	if sett.dad == 1:
+		$sprite.visible = true
+		s = load("res://assets/textures/player/default.svg")
+		$Tisten.visible = false
+		$Bossy.visible = false
+		$Rady.visible = false
+		$"Speed-cooldown".visible = false
+		$Tisten.visible = false
+		dad = $sprite
+	if sett.dad == 2:
+		$sprite.visible = true
+		s = load("res://assets/textures/player/og.svg")
+		$Tisten.visible = false
+		$Bossy.visible = false
+		$Rady.visible = false
+		$"Speed-cooldown".visible = false
+		$Tisten.visible = false
+		dad = $sprite
+	if sett.dad == 3:
+		$sprite.visible = true
+		s = load("res://assets/textures/player/10110.svg")
+		$Tisten.visible = false
+		$Bossy.visible = false
+		$Rady.visible = false
+		$"Speed-cooldown".visible = false
+		$Tisten.visible = false
+		dad = $sprite
+	if sett.dad == 4:
+		$sprite.visible = false
+		$Bossy.visible = true
+		$Tisten.visible = false
+		$Rady.visible = false
+		$"Speed-cooldown".visible = false
+		$Tisten.visible = false
+		dad = $Bossy
+	if sett.dad == 5:
+		$sprite.visible = false
+		$Rady.visible = true
+		$Tisten.visible = false
+		$Bossy.visible = false
+		$"Speed-cooldown".visible = false
+		$Tisten.visible = false
+		dad = $Rady
+	if sett.dad == 6:
+		$sprite.visible = false
+		$"Speed-cooldown".visible = true
+		$Tisten.visible = false
+		$Bossy.visible = false
+		$Rady.visible = false
+		$Tisten.visible = false
+		dad = $"Speed-cooldown"
+	if sett.dad == 7:
+		$sprite.visible = false
+		$Tisten.visible = true
+		$Bossy.visible = false
+		$Rady.visible = false
+		$"Speed-cooldown".visible = false
+		dad = $Tisten
+	
 	screen_size = get_viewport_rect().size
+	
 	## THe direction of input
 	var input_dir = Input.get_vector("move-left", "move-right", "move-up","move-down")
 	velocity = input_dir
+	$sprite.texture = s
 	
 	# Player rotation handling.
 	if i.is_action_pressed("move-down"):
-		$sprite.rotation = 0
+		dad.rotation = 0
 	if i.is_action_pressed("move-up"):
-		$sprite.rotation = 0
+		dad.rotation = 0
 	if i.is_action_pressed("move-left"):
-		$sprite.rotation = 25
+		dad.rotation = 25
 	if i.is_action_pressed("move-right"):
-		$sprite.rotation = -25
+		dad.rotation = -25
 	
 	if i.is_action_just_pressed("speed-1"):
 		speeds = 0.5
@@ -62,7 +128,7 @@ func _process(delta):
 		emit_signal("player_move")
 	else:
 		emit_signal("player_stop_move")
-		$sprite.rotation = 0
+		dad.rotation = 0
 	
 	# Prevents the player from going out of the screen
 	position.x = clamp(position.x, 0, screen_size.x)

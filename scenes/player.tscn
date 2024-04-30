@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cak16c1nl07jn"]
+[gd_scene load_steps=8 format=3 uid="uid://cak16c1nl07jn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ft8fq"]
-[ext_resource type="Texture2D" uid="uid://wahtl5goamk" path="res://assets/textures/player/10110.svg" id="2_57iw8"]
+[ext_resource type="Texture2D" uid="uid://ch1vct1dgfjdf" path="res://assets/textures/player/default.svg" id="2_md2j8"]
+[ext_resource type="Texture2D" uid="uid://b7p1yan278t25" path="res://assets/textures/easterbunnyeggys/bossy.png" id="3_5px2i"]
+[ext_resource type="Texture2D" uid="uid://bqq2k3sc1oui3" path="res://assets/textures/warnings/speed-cooldown.svg" id="4_oivup"]
+[ext_resource type="Texture2D" uid="uid://cqcsne2fagmlb" path="res://assets/textures/enemies/rady.svg" id="5_tdtst"]
+[ext_resource type="Texture2D" uid="uid://du7mes312ip4b" path="res://assets/textures/warnings/tisten.svg" id="6_av4en"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yhcay"]
 radius = 19.105
@@ -14,6 +18,26 @@ shape = SubResource("CircleShape2D_yhcay")
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.19218, 0.19218)
-texture = ExtResource("2_57iw8")
+texture = ExtResource("2_md2j8")
+
+[node name="Bossy" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.476147, 0.476147)
+texture = ExtResource("3_5px2i")
+
+[node name="Speed-cooldown" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.414506, 0.420062)
+texture = ExtResource("4_oivup")
+
+[node name="Rady" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.261124, 0.261124)
+texture = ExtResource("5_tdtst")
+
+[node name="Tisten" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.396934, 0.396934)
+texture = ExtResource("6_av4en")
 
 [connection signal="cooldown_start" from="." to="." method="_on_cooldown_start"]

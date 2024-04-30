@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgdxocgnnbf1v"]
+[gd_scene load_steps=12 format=3 uid="uid://cgdxocgnnbf1v"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_f41fx"]
 [ext_resource type="StyleBox" uid="uid://04i0fc46yi0a" path="res://assets/button.tres" id="1_jsjvu"]
 [ext_resource type="StyleBox" uid="uid://c7e3ekqxdgnam" path="res://assets/button_disabled.tres" id="2_b0gbu"]
 [ext_resource type="StyleBox" uid="uid://5xmq7qx6lyt1" path="res://assets/button_fh.tres" id="3_7xaad"]
 [ext_resource type="StyleBox" uid="uid://dfojhhfm26pbu" path="res://assets/button_press.tres" id="3_e3sul"]
-[ext_resource type="Texture2D" uid="uid://d28xunckjw4hp" path="res://ludlogo.png" id="5_26oa7"]
 [ext_resource type="StyleBox" uid="uid://cpbuhpi1vpbpe" path="res://assets/panel.tres" id="7_8w1vp"]
 [ext_resource type="Texture2D" uid="uid://w2qnqo8prmtn" path="res://assets/textures/leamlogo.png" id="8_3w1vu"]
 
@@ -41,18 +40,6 @@ font_size = 40
 [node name="mainmenu" type="CanvasLayer"]
 script = ExtResource("1_f41fx")
 
-[node name="LudLogo" type="TextureRect" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -79.0
-offset_top = 4.0
-offset_right = 228.0
-offset_bottom = 187.0
-grow_horizontal = 0
-scale = Vector2(0.246459, 0.168643)
-texture = ExtResource("5_26oa7")
-
 [node name="Version" type="Label" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
@@ -67,7 +54,7 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.2, 1.2)
 theme_override_fonts/font = SubResource("SystemFont_31jeq")
-text = "Alpha 2.0"
+text = "Alpha 2.1"
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -193,8 +180,8 @@ action_mode = 0
 text = "Settings"
 
 [node name="Leamlogo" type="Sprite2D" parent="Control"]
-position = Vector2(21.857, -125.257)
-scale = Vector2(0.30087, 0.30087)
+position = Vector2(21.857, -117.692)
+scale = Vector2(0.257328, 0.257328)
 texture = ExtResource("8_3w1vu")
 
 [node name="Panel" type="Panel" parent="."]

@@ -14,7 +14,6 @@ var pausest: bool = false
 var t
 ## The scene for the asteroid
 @export var asteroid_scene: PackedScene
-@onready var asteroid = asteroid_scene.instantiate()
 var tisten: int
 var save = GameSave.new()
 var saved = load("user://save.res")
@@ -199,10 +198,6 @@ func _process(delta):
 	$RPEmitter.position = $Player.position
 	$Debris.position = $Player.position
 	$BlastedDebris.position = $Player.position
-	var asteroid_spwan_location = get_node("AsteroidPath/AsteroidSpawnPoint")
-	var directon = asteroid_spwan_location.rotation + PI / 2
-	var velocity = Vector2(435.0, 0.0)
-	asteroid.position += velocity.rotated(directon)
 	if tisten == 110:
 		tisten = 110
 		$UI/HUD/tisten.visible = true
@@ -346,19 +341,6 @@ func _on_player_body_entered(body):
 
 func _on_fox_43_body_entered(body):
 	if fox43.visible == true:
-		if body == get_node("Player"):
-			player.set_physics_process(false)
-			player.visible = false
-			$RPEmitter.emitting = false
-			if foxblast == true:
-				$BlastedDebris.emitting = true
-			else:
-				$BlastedDebris.emitting = false
-			$Player/Blasted.playing = true
-			playing = false
-			await get_tree().create_timer(randf_range(1, 1.5)).timeout
-			gameover(1, "Player got blinded by a mini death star")
-		if body == asteroid:
 			var pelican: int = randi_range(1, 3)
 			if pelican == 2:
 				body.queue_free()
@@ -410,6 +392,7 @@ func _on_settings_reset():
 
 func _on_settings_close_requested():
 	$UI/Settings.hide()
+	ResourceSaver.save($UI/Settings.save, "user://settings.res")
 
 
 func _on_main_menu_setting_press():
